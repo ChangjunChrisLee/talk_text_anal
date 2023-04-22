@@ -1,0 +1,1027 @@
+---
+# title: "ML101"
+# subtitle: "데이터 예측모델과 기계학습의 응용"
+# author: "Changjun Lee"
+format: 
+  revealjs:
+    theme: ["theme/q-theme.scss"]
+    slide-number: c/t
+    logo: "img/HYU_logo_singlecolor_png.png"
+    # footer: "2023 봄철 3학회 공동 학술대회"
+    code-copy: true
+    center-title-slide: false
+    code-link: true
+    code-overflow: wrap
+    highlight-style: a11y
+    height: 1080
+    width: 1920
+    # smaller: true
+    # scrollable: true
+execute: 
+  eval: true
+  echo: true
+editor: 
+  markdown: 
+    wrap: 75
+---
+
+```{r}
+#| echo: false
+#| output: false
+#| warning: false
+
+library(tidyverse)
+library(widyr)
+library(tidytext)
+library(textstem)
+library(text2vec)
+library(tm)
+library(stringr)
+library(rpart)
+library(igraph)
+library(ggraph)
+library(ggrepel)
+```
+
+<br>
+
+<h1>Text Mining in Academic Research</h1>
+
+<h2>: Methods, Applications, and Challenges</h2>
+
+<hr>
+
+<br>
+
+<h5>`Invited Talk` @서강대학교 메타버스전문대학원</h5>
+
+2023-05-09
+
+<br>
+
+<br>
+
+<h3>Changjun Lee</h3>
+
+<h4>Hanyang University</h4>
+
+<h4>Dep. Media & Social Informatics</h4>
+
+`r fontawesome::fa("home", "black")`
+ [changjunlee.com](https://changjunlee.com/){.uri}
+
+## About me
+
+<br>
+
+::: columns
+::: {.column width="20%"}
+![](img/cj.jpg){width="377"}
+:::
+
+::: {.column width="80%"}
+-   Computational Social Scientist
+
+-   Network Scientist
+
+-   Interdisciplinary Scholar
+
+> My research focuses on ***utilizing computational methods to tackle a
+> wide range of social phenomena***, including technology evolution &
+> regional growth, knowledge management, and technology & media innovation.
+> I am passionate about using technology and data to drive innovation and
+> solve real-world problems.
+
+-   **Research** `#Innovation` `#Media` `#Technology` `#PublicPolicy`
+
+-   **Teaching** `#DataScience` `#culture&tech`
+:::
+:::
+
+## Introduction
+
+<hr>
+
+<br>
+
+### **Importance of Text Mining in Academic Research**
+
+<div>
+
+-   **Growth of digital text data**: Exponential increase in research
+    publications, conference proceedings, and digital repositories.
+
+-   **Time-saving**: Text mining techniques automate analysis, reducing
+    manual labor and time-consuming tasks.
+
+-   **Uncovering hidden patterns**: Detects patterns, trends, and
+    relationships in large datasets that are not easily discernible through
+    manual analysis.
+
+-   **Enhancing interdisciplinary research**: Facilitates collaboration and
+    knowledge transfer between different research fields by discovering
+    connections and insights across disciplines.
+
+-   **Importance in Media Studies**: Analyzing vast amounts of media
+    content (news articles, social media posts, multimedia transcripts) to
+    understand public opinion, sentiment, and the impact of media on
+    society. Text mining enables efficient examination of media biases,
+    framing, and agenda-setting, as well as tracking emerging trends and
+    topics.
+
+</div>
+
+## Introduction
+
+<br>
+
+### **Unlocking the Power of Text Data**
+
+-   Unveil valuable insights and hidden patterns
+
+-   Harness natural language processing (`NLP`), machine learning (`ML`),
+    and statistical techniques
+
+<br>
+
+### **Text Mining: A Synergy of Techniques**
+
+1.  **Data Collection**: Gathering textual data from diverse sources
+
+2.  **Pre-processing**: Cleaning and transforming raw text for analysis
+
+3.  **Analysis**: Employing NLP, machine learning, and statistical methods
+    to uncover patterns
+
+4.  **Interpretation**: Making sense of the results and deriving actionable
+    insights
+
+5.  **Visualization**: Effectively presenting findings through engaging
+    visual aids
+
+## Overview of the talk
+
+<br>
+
+### **🛠️ Text Mining Techniques**
+
+-   Discovering powerful tools and methodologies
+
+<br>
+
+### **🎓 Applications in Academic Research**
+
+-   Exploring the impact of text mining across disciplines
+
+<br>
+
+### **⚠️ Challenges and Limitations**
+
+-   Navigating the hurdles and constraints
+
+<br>
+
+### **🚀 Future Directions and Conclusion**
+
+-   Envisioning the evolving landscape of text mining
+
+## Text Mining Techniques
+
+<br>
+
+**A.** `Pre-processing:` The foundation for accurate analysis
+
+<br>
+
+**B.** `Feature Extraction:` Transforming text into meaningful
+representations
+
+<br>
+
+**C.** `Text Classification:` Categorizing documents based on content
+
+<br>
+
+**D.** `Text Clustering:` Grouping similar documents together
+
+<br>
+
+**E.** `Sentiment Analysis:` Decoding emotions and opinions in text
+
+<br>
+
+**F.** `Named Entity Recognition:` Identifying and classifying entities in
+text
+
+<br>
+
+**G.** `Relation Extraction:` Discovering relationships between entities
+
+## Text Mining Techniques {.scrollable}
+
+### Pre-processing
+
+::: panel-tabset
+## Tokenization
+
+> Splitting text into individual words or tokens
+
+```{r}
+text <- "Text mining is an important technique in academic research."
+text_df <- tibble(line = 1, text = text)
+text_df
+
+tokens <- text_df %>%
+  unnest_tokens(word, text)
+tokens
+
+```
+
+## Stop word removal
+
+> Removing common words that do not contribute to meaning
+
+```{r}
+data("stop_words")
+stop_words
+
+tokens_clean <- tokens %>%
+  anti_join(stop_words)
+tokens_clean
+
+```
+
+## Stemming and Lemmatization
+
+> Reducing words to their root or base form
+
+```{r}
+tokens_root <- tokens_clean %>% 
+  mutate(lemma = lemmatize_words(word))
+tokens_root
+```
+:::
+
+## Text Mining Techniques {.scrollable}
+
+<br>
+
+### Feature Extraction
+
+::: panel-tabset
+## Bag of Words
+
+> Creating a document-term matrix with word frequencies
+
+```{r}
+texts <- c("Text mining is important in academic research.",
+           "Feature extraction is a crucial step in text mining.",
+           "Cats and dogs are popular pets.",
+           "Elephants are large animals.",
+           "Whales are mammals that live in the ocean.")
+
+text_df <- tibble(doc_id = 1:length(texts), text = texts)
+text_df
+
+tokens <- text_df %>%
+  unnest_tokens(word, text)
+tokens
+
+# Create a Bag of Words representation
+bow <- tokens %>%
+  count(doc_id, word) %>%
+  spread(key = word, value = n, fill = 0)
+bow
+```
+
+## Term Frequency-Inverse Document Frequency (TF-IDF)
+
+> Weighting words $W_{(t,d)}$ based on their importance within and across
+> documents to see how the term ***t*** is original (or unique) is in a
+> document ***d***
+
+$$
+W_{(t,d)}=tf_{(t,d)} \times idf_{(t)}
+$$ $$
+W_{(t,d)}=tf_{(t,d)} \times log(\frac{N}{df_{t}})
+$$ - $t$ = a term
+
+-   $d$ = a document
+
+-   $tf_{t,d}$ = frequency of term $t$ (e.g. a word) in doc $d$ (e.g. a
+    sentence or an article)
+
+-   $df_{term}$ = \# of documents containing the term
+
+> A high $tf_{t,d}$ indicates that the term is highly significant within
+> the document, while a high $df_{t}$ suggests that the term is widely used
+> across various documents (e.g., common verbs). Multiplying by $idf_{t}$
+> helps to account for the term's universality. Ultimately, tf-idf
+> effectively captures a term's uniqueness and importance, taking into
+> consideration its prevalence across documents.
+
+As an example,
+
+```{r}
+# Calculate the TF-IDF scores
+tf_idf <- tokens %>%
+  count(doc_id, word) %>%
+  bind_tf_idf(word, doc_id, n)
+tf_idf
+
+# Spread into a wide format
+tf_idf_matrix <- tf_idf %>%
+  select(doc_id, word, tf_idf) %>%
+  spread(key = word, value = tf_idf, fill = 0)
+tf_idf_matrix
+
+```
+
+## Word Embeddings
+
+> Mapping words to continuous vector spaces based on their semantic
+> relationships
+
+-   Represents words as fixed-size vectors in continuous space
+
+-   Captures semantic relationships and linguistic patterns between words
+
+-   Common algorithms: `Word2Vec`, `GloVe`, `FastText` → `chatGPT`
+
+-   Preserves semantic and syntactic properties in **high-dimensional
+    vector spaces**
+
+-   Words with similar meanings or usage patterns are closer in vector
+    space
+
+-   **Applications**: sentiment analysis, document classification, language
+    translation, information retrieval
+:::
+
+## Text Mining Techniques {.scrollable}
+
+<br>
+
+### Text Classification
+
+::: panel-tabset
+## Algorithms in use
+
+-   Naïve Bayes
+
+-   Support Vector Machines
+
+-   Neural Networks
+
+-   Decision Trees
+
+## For example (Spam mail classifier)
+
+**Bayes' Theorem**
+
+> Bayes' theorem is a fundamental theorem in probability theory that
+> describes the relationship between the conditional probabilities of two
+> events (here, A and B). It states that the probability of event A given
+> event B is equal to the probability of event B given event A multiplied
+> by the probability of event A, divided by the probability of event B.
+> Mathematically, this can be written as:
+
+$$
+P(A|B) = \frac{P(B|A)P(A)}{P(B)}
+$$
+
+where:
+
+-   $P(A|B)$ is the probability of event A given event B (known as the
+    ***posterior probability***)
+
+-   $P(B|A)$ is the probability of event B given event A (known as the
+    ***likelihood***)
+
+-   $P(A)$ is the probability of event A (known as the ***prior
+    probability***)
+
+-   $P(B)$ is the probability of event B (known as the ***evidence***)
+
+<br>
+
+**The Naive Bayes Algorithm**
+
+> The Naive Bayes algorithm uses Bayes' theorem to predict the probability
+> of each class label given a set of observed features. The algorithm
+> assumes that the features are conditionally independent given the class
+> label, which allows the algorithm to simplify the calculations involved
+> in determining the probability of each class label.
+
+Let $X = (X_1, X_2, ..., X_n)$ represent the set of observed features, and
+let Y represent the class label. The goal is to predict the probability of
+each class label given X, i.e. $P(Y|X)$. Using Bayes' theorem, we can
+write:
+
+$$
+P(Y|X) = \frac{P(X|Y)P(Y)}{P(X)}
+$$
+
+where:
+
+-   $P(Y|X)$ is the posterior probability of Y given X
+
+-   $P(X|Y)$ is the likelihood of X given Y
+
+-   $P(Y)$ is the prior probability of Y
+
+-   $P(X)$ is the evidence
+
+<br>
+
+The Naive Bayes algorithm assumes that the features $X_1, X_2, ..., X_n$
+are conditionally independent given Y, which means that:
+
+$$
+P(X|Y) = P(X_1|Y) \times P(X_2|Y) \times \ldots \times P(X_n|Y)
+$$
+
+<br>
+
+Using this assumption, we can rewrite the equation for $P(Y|X)$ as:
+
+$$
+P(Y|X) = \frac{P(Y)P(X_1|Y)P(X_2|Y) \cdots P(X_n|Y)}{P(X)}
+$$
+
+<br>
+
+The evidence $P(X)$ is a constant for a given set of features X, so we can
+ignore it for the purposes of classification. Therefore, we can simplify
+the equation to:
+
+$$
+P(Y|X) \propto P(Y) \times P(X_1|Y) \times P(X_2|Y) \times \ldots \times P(X_n|Y)
+$$
+
+<br>
+
+The Naive Bayes algorithm calculates the likelihoods $P(X_i|Y)$ for each
+feature and class label from the training data, and uses these likelihoods
+to predict the probability of each class label given a new set of features.
+The algorithm selects the class label with the highest probability as the
+predicted class label.
+
+<br>
+
+-   You've got mail like this
+
+> Hello Dear,
+>
+> I'd like to offer the bes tchance to buy ***Viagra***.
+>
+> If you are interested ...
+>
+> The **benefit** you get is that ...
+>
+> Also want to suggest a good **fund**..
+>
+> Amount of 100 **MillionUS**\$ ...
+>
+> hope to hear from you.
+>
+> Yours sincerely,
+
+-   Calculate probabilities $P(Ham|Viagra)$ and $P(Spam|Viagra)$ and
+    Compare those two!
+
+$$
+P(Ham|Viagra) = \frac{P(Viagra|Ham)P(Ham)}{P(Viagra)}
+$$ $$
+P(Spam|Viagra) = \frac{P(Viagra|Spam)P(Spam)}{P(Viagra)}
+$$
+:::
+
+## Text Mining Techniques {.scrollable}
+
+<br>
+
+### Text Clustering
+
+::: panel-tabset
+## K-means Clustering
+
+-   Partitional clustering method that assigns documents to a fixed number
+    of clusters
+
+-   Suitable for larger datasets
+
+```{r}
+# Pre-processing and feature extraction (TF-IDF) from previous example
+tf_idf_matrix
+
+# K-means clustering
+set.seed(42)
+k <- 3  # Number of clusters
+kmeans_model <- kmeans(tf_idf_matrix[, -1], centers = k)
+clusters <- kmeans_model$cluster
+
+# Assigning clusters to original data
+text_df %>% 
+  mutate(cluster = clusters)
+```
+
+## Hierarchical Clustering
+
+-   Agglomerative clustering method that builds a tree of clusters
+
+-   Suitable for smaller datasets
+
+```{r}
+# Pre-processing and feature extraction (TF-IDF)
+tf_idf_matrix
+
+# Hierarchical clustering
+dist_matrix <- dist(tf_idf_matrix[, -1], method = "euclidean")
+dist_matrix
+
+hc <- hclust(dist_matrix, method = "ward.D2")
+plot(hc)
+
+```
+
+## Latent Dirichlet Allocation (LDA)
+
+-   Probabilistic topic modeling method that assigns documents to a mixture
+    of topics
+
+-   Suitable for discovering latent topics in text data
+
+```{r}
+library(topicmodels)
+
+# Pre-processing and feature extraction (Bag of Words)
+tokens
+
+dtm <- tokens %>%
+  count(doc_id, word) %>%
+  cast_dtm(doc_id, word, n)
+dtm
+
+# LDA topic modeling
+k <- 2  # Number of topics
+lda_model <- LDA(dtm, k = k, control = list(seed = 42))
+gamma <- posterior(lda_model)$topics
+
+# Assigning topics to original data
+text_df %>% 
+  mutate(topic = apply(gamma, 1, which.max))
+
+
+```
+:::
+
+## Text Mining Techniques {.scrollable}
+
+<br>
+
+### Sentiment Analysis
+
+::: panel-tabset
+## Lexicon-based methods
+
+-   Utilize pre-defined lists of words with associated sentiment scores
+
+-   Calculate overall sentiment by aggregating scores of individual words
+
+```{r}
+# Pre-processing
+tokens
+
+# Sentiment analysis using NRC lexicon
+sentiments_nrc <- tokens %>%
+  inner_join(get_sentiments("nrc"), by = "word") 
+sentiments_nrc
+
+sentiments_nrc %>% 
+  group_by(doc_id, sentiment) %>% 
+  count(sentiment) %>% 
+  ggplot(aes(x = as.factor(doc_id), 
+             y = n, fill = sentiment)) +
+  geom_bar(stat = 'identity',
+           position = 'fill') +
+  labs(x = "Document", y = NULL) +
+  theme_bw()
+
+```
+
+## Machine learning-based methods
+
+-   Train a supervised machine learning model on labeled sentiment data
+
+-   Apply the trained model to predict sentiment of new text
+
+```{r}
+# Pre-processing and feature extraction (TF-IDF) from previous example
+tf_idf_matrix
+
+# Train a Random Forest model
+train_data <- tf_idf_matrix %>%
+  left_join(sentiments_nrc, by = "doc_id") %>%
+  relocate(sentiment, .after = doc_id) %>% 
+  drop_na %>% 
+  select(-doc_id) 
+train_data
+
+model_rf <- rpart("sentiment ~ a + academic + crucial", 
+                         data = train_data)
+# Predict sentiment for new text
+predictions <- predict(model_rf, newdata = tf_idf_matrix)
+predictions
+```
+
+## Deep learning-based methods
+
+-   Train a deep learning model, such as a Recurrent Neural Network (RNN)
+    or Transformer, on labeled sentiment data
+
+-   Apply the trained model to predict sentiment of new text
+:::
+
+## Text Mining Techniques {.scrollable}
+
+<br>
+
+### Named Entity Recognition
+
+::: panel-tabset
+## Rule-based methods
+
+-   Utilize predefined patterns and rules to identify entities in text
+
+-   Examples include regular expressions and dictionary lookups
+
+```{r}
+# Example data
+text_df <- data.frame(
+  doc_id = 1:3,
+  text = c(
+    "John works at Google.",
+    "Alice is employed by Microsoft.",
+    "Bob is a researcher at OpenAI."
+  ),
+  stringsAsFactors = FALSE
+)
+text_df
+
+# Define a simple regular expression pattern for person-organization relations
+relation_pattern <- "([A-Z][a-z]+) (?:works at|is employed by|is a researcher at) ([A-Z][A-Za-z]+)"
+
+# Extract relations from text
+str_match_all(text_df$text, relation_pattern) %>%
+  lapply(function(matches) {
+    if (nrow(matches) > 0) {
+      return(data.frame(
+        person = matches[, 2],
+        organization = matches[, 3],
+        stringsAsFactors = FALSE
+      ))
+    } else {
+      return(NULL)
+    }
+  }) %>% do.call(rbind,.)
+
+```
+
+## Machine learning-based methods
+
+-   Train a supervised machine learning model on labeled entity data
+
+-   Apply the trained model to recognize entities in new text
+
+## Deep learning-based methods
+
+-   Train a deep learning model, such as a BiLSTM-CRF or Transformer, on
+    labeled entity data
+
+-   Apply the trained model to recognize entities in new text
+:::
+
+## Text Mining Techniques {.scrollable}
+
+<br>
+
+### Relation Extraction
+
+::: panel-tabset
+## **Theoretical Foundation**
+
+-   Keyword network analysis is grounded in social network analysis (SNA)
+    and graph theory.
+
+-   SNA allows researchers to study relationships, interactions, and
+    connections between entities (in this case, keywords).
+
+-   Graph theory provides a mathematical framework to analyze and visualize
+    complex networks, allowing for a better understanding of the structure
+    and organization of the data.
+
+## **Implications for Research**
+
+1.  **Identify key topics and themes**: Keyword network analysis can help
+    researchers identify the most important keywords or concepts in a given
+    text dataset, providing insight into the main topics and themes.
+
+2.  **Uncover hidden relationships**: By visualizing and analyzing the
+    connections between keywords, researchers can discover hidden
+    relationships and patterns in the data that might not be apparent
+    through traditional text analysis methods.
+
+3.  **Facilitate interdisciplinary research**: Keyword network analysis can
+    reveal connections between seemingly unrelated research areas,
+    facilitating interdisciplinary collaboration and knowledge transfer.
+
+4.  **Inform research design and sampling**: By identifying the most
+    influential keywords or topics in a dataset, researchers can target
+    their efforts on specific areas of interest, enabling more efficient
+    research design and sampling strategies.
+
+5.  **Support hypothesis generation and validation**: The visualization and
+    analysis of keyword networks can help researchers generate and validate
+    hypotheses about the relationships between different concepts, leading
+    to a deeper understanding of the underlying phenomena.
+
+:::
+
+## Text Mining Techniques {.scrollable}
+
+<br>
+
+### Relation Extraction
+
+::: panel-tabset
+
+
+## **A. Preprocessing and extracting keywords**
+
+-   Tokenization
+
+-   Stop word removal
+
+-   Stemming or lemmatization (optional)
+
+-   **Sample text**: 6 sentences
+
+> Text mining and data mining are essential techniques in data science, and
+> they help analyze large amounts of textual data. Machine learning,
+> natural language processing, and deep learning are crucial techniques for
+> text mining and data analysis. Text mining can reveal insights in large
+> collections of documents, uncovering hidden patterns and trends. Big data
+> analytics involves data mining, machine learning, text mining, and
+> statistical analysis. Sentiment analysis is a popular application of text
+> mining, natural language processing, and machine learning, often used for
+> social media analytics. Data visualization plays a significant role in
+> understanding patterns and trends in data mining results, making complex
+> information more accessible.
+
+```{r}
+# Example dataset
+text_data <- tibble(
+  doc_id = 1:6,
+  text = c("Text mining and data mining are essential techniques in data science, and they help analyze large amounts of textual data.",
+           "Machine learning, natural language processing, and deep learning are crucial techniques for text mining and data analysis.",
+           "Text mining can reveal insights in large collections of documents, uncovering hidden patterns and trends.",
+           "Big data analytics involves data mining, machine learning, text mining, and statistical analysis.",
+           "Sentiment analysis is a popular application of text mining, natural language processing, and machine learning, often used for social media analytics.",
+           "Data visualization plays a significant role in understanding patterns and trends in data mining results, making complex information more accessible.")
+)
+text_data
+
+# Tokenization
+tokens <- text_data %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words) %>%
+  group_by(doc_id) %>%
+  count(word, sort = TRUE)
+tokens
+
+```
+
+## **B. Co-occurrence matrix and network**
+
+-   Calculate word co-occurrence matrix
+
+-   Convert co-occurrence matrix to a graph object
+
+-   Visualize the keyword network
+
+```{r}
+#| warning: false
+#| fig-height: 10
+#| fig-width: 10
+#| fig-dpi: 200
+#| 
+# Calculate co-occurrence matrix
+co_occurrence_matrix <- tokens %>%
+  ungroup() %>%
+  pairwise_count(word, doc_id, sort = TRUE)
+
+co_occurrence_matrix
+
+
+# Filter edges and create graph object
+filtered_edges <- co_occurrence_matrix %>%
+  filter(n >= 2)
+
+keyword_network <- graph_from_data_frame(filtered_edges)
+keyword_network
+
+# Visualize the keyword network
+ggraph(keyword_network, layout = "fr") +
+  geom_edge_link(aes(edge_alpha = n), show.legend = FALSE) +
+  geom_node_point(color = "blue", size = 5) +
+  geom_node_text(aes(label = name), vjust = 1, hjust = 1, size = 10) +
+  theme_graph(base_family = "Arial") +
+  labs(title = "Keyword Co-occurrence Network")
+
+```
+
+<br>
+
+To understand the graph better, let's examine some of the connections:
+
+1.  **`text -> mining`**: The keyword 'text' is connected to the keyword
+    'mining'. This edge represents that 'text' and 'mining' co-occur in the
+    dataset, forming the term 'text mining'.
+
+2.  **`mining -> data`**: The keyword 'mining' is connected to the keyword
+    'data', indicating that these two terms appear together, forming the
+    term 'data mining'.
+
+3.  **`learning -> machine`**: The keyword 'learning' is connected to the
+    keyword 'machine', representing the co-occurrence of these two terms,
+    forming 'machine learning'.
+
+4.  **`analysis -> text`**: The keyword 'analysis' is connected to the
+    keyword 'text', suggesting that these two terms co-occur in the
+    dataset, forming the term 'text analysis'.
+
+From this graph, you can observe the following:
+
+-   Keywords related to data analysis techniques, such as '*text mining*',
+    '*data mining*', '*machine learning*', and '*analysis*', are strongly
+    connected, indicating that they are frequently discussed together in
+    the dataset.
+
+-   The term '*text mining*' is connected to '*data mining*', '*machine
+    learning*', and '*analysis*', suggesting that these techniques are
+    closely related and are often mentioned in the context of text
+    analysis.
+
+-   The term 'machine learning' is connected to '*text mining*', '*data
+    mining*', and 'analysis', highlighting its importance and relevance to
+    different data analysis techniques.
+
+## **C. Analyzing keyword network**
+
+-   `Degree centrality`: Number of connections for each node
+
+-   `Betweenness centrality`: Importance of a node as a connector in the
+    network
+
+-   `Community detection`: Clustering of nodes in the network
+
+```{r}
+#| warning: false
+#| fig-height: 10
+#| fig-width: 10
+#| fig-dpi: 200
+
+# Degree centrality
+degree_centrality <- degree(keyword_network)
+# Betweenness centrality
+betweenness_centrality <- betweenness(keyword_network)
+
+tibble(node = names(degree_centrality), 
+       degree_centrality = degree(keyword_network)) %>% 
+  left_join(
+    tibble(node = names(degree_centrality), 
+       betweenness_centrality = betweenness(keyword_network))
+  ) -> node_data
+node_data
+
+# Degree - Btw mat
+node_data %>% 
+  ggplot(aes(x = degree_centrality,
+             y = betweenness_centrality)) +
+  geom_text_repel(aes(label = node), size = 10)
+
+# Degree - Btw mat (2)
+node_data %>% 
+  filter(betweenness_centrality < 7) %>% 
+  ggplot(aes(x = degree_centrality,
+             y = betweenness_centrality)) +
+  geom_text_repel(aes(label = node), size = 10)
+
+
+# Community detection using Louvain method
+
+# Convert the directed graph to an undirected graph
+undirected_keyword_network <- as.undirected(keyword_network, mode = "collapse")
+
+# Perform community detection using the Louvain algorithm
+louvain_communities <- cluster_louvain(undirected_keyword_network)
+
+# Print the community assignments
+print(louvain_communities)
+
+# Convert the community assignments to a character vector
+louvain_communities_char <- as.character(louvain_communities$membership)
+names(louvain_communities_char) <- louvain_communities$names
+```
+
+```{r}
+#| warning: false
+#| fig-height: 12
+#| fig-width: 15
+#| fig-dpi: 200
+
+
+# Visualize the keyword network with community colors
+ggraph(keyword_network) +
+  geom_edge_link(aes(width = n), alpha = 0.5) +
+  geom_node_point(aes(size = degree_centrality,
+                      col = louvain_communities_char)) +
+  geom_node_text(aes(label = name, color = louvain_communities_char), 
+                 vjust = 1.5, hjust = 1.5,
+                 size = 10) +
+  scale_color_discrete(name = "Community") +  # add a legend for community colors
+  theme_graph(base_family = "Arial") +
+  labs(title = "Keyword Network with Community Detection")
+
+
+```
+:::
+
+
+
+## Applications in Academic Research
+
+<br>
+
+-   **Literature reviews and meta-analyses**
+
+    -   Summarization of articles (Keywords and Topics)
+
+    -   Meta-analysis
+
+    -   Identifying research trends and gaps
+
+    -   Analyzing online academic discussions
+
+    -   Citation network analysis
+
+<br>
+
+-   **Social media analysis for public opinion on academic topics**
+
+    -   Trend, Keywords, and topic analysis
+
+    -   Information flow
+
+    -   Detection of false news
+
+    -   Sentiment analysis
+
+    -   Network analysis (among actors, keywords, etc)
+
+## Challenges and Limitations
+
+<br>
+
+A. Handling unstructured and noisy data
+
+<br>
+
+B. Addressing language and domain-specific challenges
+
+<br>
+
+C. Ethical and legal considerations
+
+<br>
+
+D. Scalability and computational complexity
+
+## Conclusion and Future Directions
+
+<br>
+
+A. The growing importance of text mining in academic research
+
+<br>
+
+B. Continued development of new techniques and methodologies
+
+<br>
+
+C. Encouraging interdisciplinary collaboration and research
+
+<br>
+
+D. Addressing challenges and limitations for more robust applications
