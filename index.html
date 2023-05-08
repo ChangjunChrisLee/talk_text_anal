@@ -440,16 +440,24 @@ Dep. Media &amp; Social Informatics
 <p><br></p>
 <h3 id="importance-of-text-mining-in-academic-research"><strong>Importance of Text Mining in Academic Research</strong></h3>
 <div>
+<div>
 <ul>
-<li><p><strong>Growth of digital text data</strong>: Exponential increase in research publications, conference proceedings, and digital repositories.</p></li>
-<li><p><strong>Time-saving</strong>: Text mining techniques automate analysis, reducing manual labor and time-consuming tasks.</p></li>
-<li><p><strong>Uncovering hidden patterns</strong>: Detects patterns, trends, and relationships in large datasets that are not easily discernible through manual analysis.</p></li>
-<li><p><strong>Enhancing interdisciplinary research</strong>: Facilitates collaboration and knowledge transfer between different research fields by discovering connections and insights across disciplines.</p></li>
-<li><p><strong>Importance in Media Studies</strong>: Analyzing vast amounts of media content (news articles, social media posts, multimedia transcripts) to understand public opinion, sentiment, and the impact of media on society. Text mining enables efficient examination of media biases, framing, and agenda-setting, as well as tracking emerging trends and topics.</p></li>
+<li class="fragment"><p><strong>Growth of digital text data</strong>: Exponential increase in research publications, conference proceedings, and digital repositories.</p></li>
+<li class="fragment"><p><strong>Time-saving</strong>: Text mining techniques automate analysis, reducing manual labor and time-consuming tasks.</p></li>
+<li class="fragment"><p><strong>Uncovering hidden patterns</strong>: Detects patterns, trends, and relationships in large datasets that are not easily done through manual analysis.</p></li>
+<li class="fragment"><p><strong>Enhancing interdisciplinary research</strong>: Facilitates collaboration and knowledge transfer between different research fields by discovering connections and insights across disciplines.</p></li>
+<li class="fragment"><p><strong>Importance in Media Studies</strong>: Analyzing vast amounts of media content (news articles, social media posts, multimedia transcripts) <u>to understand public opinion, sentiment, and the impact of media on society</u>. Text mining enables efficient examination of <em>media biases, framing, and agenda-setting</em>, as well as tracking <em>emerging trends and topics.</em></p></li>
 </ul>
 </div>
+</div>
 </section><section id="introduction-1" class="slide level2"><h2>Introduction</h2>
-<p><br></p>
+<hr>
+
+<img data-src="img/fig_1.png" class="r-stretch"></section><section id="introduction-2" class="slide level2"><h2>Introduction</h2>
+<hr>
+
+<img data-src="img/fig_2.png" class="r-stretch"></section><section id="introduction-3" class="slide level2"><h2>Introduction</h2>
+<hr>
 <h3 id="unlocking-the-power-of-text-data"><strong>Unlocking the Power of Text Data</strong></h3>
 <ul>
 <li><p>Unveil valuable insights and hidden patterns</p></li>
@@ -464,7 +472,7 @@ Dep. Media &amp; Social Informatics
 <li><p><strong>Interpretation</strong>: Making sense of the results and deriving actionable insights</p></li>
 <li><p><strong>Visualization</strong>: Effectively presenting findings through engaging visual aids</p></li>
 </ol></section><section id="overview-of-the-talk" class="slide level2"><h2>Overview of the talk</h2>
-<p><br></p>
+<hr>
 <h3 id="text-mining-techniques"><strong>🛠️ Text Mining Techniques</strong></h3>
 <ul>
 <li>Discovering powerful tools and methodologies</li>
@@ -484,8 +492,8 @@ Dep. Media &amp; Social Informatics
 <ul>
 <li>Envisioning the evolving landscape of text mining</li>
 </ul></section><section id="text-mining-techniques-1" class="slide level2"><h2>Text Mining Techniques</h2>
-<p><br></p>
-<p><strong>A.</strong> <code>Pre-processing:</code> The foundation for accurate analysis</p>
+<hr>
+<p><strong>A.</strong> <code>Pre-processing:</code> The foundation for accurate analysis (70% time &amp; labour)</p>
 <p><br></p>
 <p><strong>B.</strong> <code>Feature Extraction:</code> Transforming text into meaningful representations</p>
 <p><br></p>
@@ -499,15 +507,9 @@ Dep. Media &amp; Social Informatics
 <p><br></p>
 <p><strong>G.</strong> <code>Relation Extraction:</code> Discovering relationships between entities</p>
 </section><section id="text-mining-techniques-2" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
+<hr>
 <h3 id="pre-processing">Pre-processing</h3>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-1-1">Tokenization</a></li>
-<li><a href="#tabset-1-2">Stop word removal</a></li>
-<li><a href="#tabset-1-3">Stemming and Lemmatization</a></li>
-</ul>
-<div class="tab-content">
-<div id="tabset-1-1">
+<h4 id="tokenization"><strong>Tokenization</strong></h4>
 <blockquote>
 <p>Splitting text into individual words or tokens</p>
 </blockquote>
@@ -539,8 +541,10 @@ Dep. Media &amp; Social Informatics
 9     1 research </code></pre>
 </div>
 </div>
-</div>
-<div id="tabset-1-2">
+</section><section id="text-mining-techniques-3" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
+<hr>
+<h3 id="pre-processing-1">Pre-processing</h3>
+<h4 id="stop-word-removal"><strong>Stop word removal</strong></h4>
 <blockquote>
 <p>Removing common words that do not contribute to meaning</p>
 </blockquote>
@@ -577,10 +581,13 @@ Dep. Media &amp; Social Informatics
 5     1 research </code></pre>
 </div>
 </div>
-</div>
-<div id="tabset-1-3">
+</section><section id="text-mining-techniques-4" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
+<hr>
+<h3 id="pre-processing-2">Pre-processing</h3>
+<h4 id="stemming-and-lemmatization"><strong>Stemming and Lemmatization</strong></h4>
 <blockquote>
 <p>Reducing words to their root or base form</p>
+<p>한글에서는 형태소 분석 (명사, 동사, 형용사 등으로 분해)</p>
 </blockquote>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>tokens_root <span class="ot">&lt;-</span> tokens_clean <span class="sc">%&gt;%</span> </span>
@@ -597,20 +604,10 @@ Dep. Media &amp; Social Informatics
 5     1 research  research </code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-</section><section id="text-mining-techniques-3" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
-<p><br></p>
+</section><section id="text-mining-techniques-5" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
+<hr>
 <h3 id="feature-extraction">Feature Extraction</h3>
-<div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-2-1">Bag of Words</a></li>
-<li><a href="#tabset-2-2">Term Frequency-Inverse Document Frequency (TF-IDF)</a></li>
-<li><a href="#tabset-2-3">Word Embeddings</a></li>
-</ul>
-<div class="tab-content">
-<div id="tabset-2-1">
+<h4 id="bag-of-words"><strong>Bag of Words</strong></h4>
 <blockquote>
 <p>Creating a document-term matrix with word frequencies</p>
 </blockquote>
@@ -672,8 +669,10 @@ Dep. Media &amp; Social Informatics
 #   text &lt;dbl&gt;, that &lt;dbl&gt;, the &lt;dbl&gt;, whales &lt;dbl&gt;</code></pre>
 </div>
 </div>
-</div>
-<div id="tabset-2-2">
+</section><section id="text-mining-techniques-6" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
+<hr>
+<h3 id="feature-extraction-1">Feature Extraction</h3>
+<h4 id="term-frequency-inverse-document-frequency-tf-idf"><strong>Term Frequency-Inverse Document Frequency (TF-IDF)</strong></h4>
 <blockquote>
 <p>Weighting words <span class="math inline">\(W_{(t,d)}\)</span> based on their importance within and across documents to see how the term <strong><em>t</em></strong> is original (or unique) is in a document <strong><em>d</em></strong></p>
 </blockquote>
@@ -681,15 +680,18 @@ Dep. Media &amp; Social Informatics
 W_{(t,d)}=tf_{(t,d)} \times idf_{(t)}
 \]</span> <span class="math display">\[
 W_{(t,d)}=tf_{(t,d)} \times log(\frac{N}{df_{t}})
-\]</span> - <span class="math inline">\(t\)</span> = a term</p>
+\]</span></p>
 <ul>
-<li><p><span class="math inline">\(d\)</span> = a document</p></li>
-<li><p><span class="math inline">\(tf_{t,d}\)</span> = frequency of term <span class="math inline">\(t\)</span> (e.g.&nbsp;a word) in doc <span class="math inline">\(d\)</span> (e.g.&nbsp;a sentence or an article)</p></li>
-<li><p><span class="math inline">\(df_{term}\)</span> = # of documents containing the term</p></li>
+<li><p><span class="math inline">\(t\)</span> : a term</p></li>
+<li><p><span class="math inline">\(d\)</span> : a document</p></li>
+<li><p><span class="math inline">\(tf_{t,d}\)</span> : frequency of term <span class="math inline">\(t\)</span> (e.g.&nbsp;a word) in doc <span class="math inline">\(d\)</span> (e.g.&nbsp;a sentence or an article)</p></li>
+<li><p><span class="math inline">\(df_{term}\)</span> : # of documents containing the term</p></li>
+<li><p><span class="math inline">\(N\)</span> : total number of documents</p></li>
 </ul>
 <blockquote>
 <p>A high <span class="math inline">\(tf_{t,d}\)</span> indicates that the term is highly significant within the document, while a high <span class="math inline">\(df_{t}\)</span> suggests that the term is widely used across various documents (e.g., common verbs). Multiplying by <span class="math inline">\(idf_{t}\)</span> helps to account for the term’s universality. Ultimately, tf-idf effectively captures a term’s uniqueness and importance, taking into consideration its prevalence across documents.</p>
 </blockquote>
+<hr>
 <p>As an example,</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Calculate the TF-IDF scores</span></span>
@@ -733,11 +735,27 @@ W_{(t,d)}=tf_{(t,d)} \times log(\frac{N}{df_{t}})
 #   text &lt;dbl&gt;, that &lt;dbl&gt;, the &lt;dbl&gt;, whales &lt;dbl&gt;</code></pre>
 </div>
 </div>
-</div>
-<div id="tabset-2-3">
+<hr>
+<p>Another example: Moon vs.&nbsp;Park speech</p>
+<ul>
+<li>Compare two speeches based on the just frequency of words</li>
+</ul>
+<p><img data-src="https://changjunlee.com/teaching/media_ds/about/NLP_2_files/figure-html/unnamed-chunk-16-1.png"></p>
+<ul>
+<li>Compare based on TF-IDF</li>
+</ul>
+<p><img data-src="https://changjunlee.com/teaching/media_ds/about/NLP_2_files/figure-html/unnamed-chunk-37-1.png"></p>
+</section><section id="text-mining-techniques-7" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
+<hr>
+<h3 id="feature-extraction-2">Feature Extraction</h3>
+<h4 id="word-embeddings"><strong>Word Embeddings</strong></h4>
 <blockquote>
 <p>Mapping words to continuous vector spaces based on their semantic relationships</p>
 </blockquote>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img data-src="https://www.researchgate.net/profile/Dingcheng-Li-2/publication/332892222/figure/fig2/AS:755762527739904@1557199236483/2D-PCA-projection-of-word-embeddings-Five-different-word-clusters-are-shown_W640.jpg"></p>
+</div><div class="column" style="width:60%;">
 <ul>
 <li><p>Represents words as fixed-size vectors in continuous space</p></li>
 <li><p>Captures semantic relationships and linguistic patterns between words</p></li>
@@ -748,17 +766,15 @@ W_{(t,d)}=tf_{(t,d)} \times log(\frac{N}{df_{t}})
 </ul>
 </div>
 </div>
-</div>
-</section><section id="text-mining-techniques-4" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
-<p><br></p>
+</section><section id="text-mining-techniques-8" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
 <h3 id="text-classification">Text Classification</h3>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-3-1">Algorithms in use</a></li>
-<li><a href="#tabset-3-2">For example (Spam mail classifier)</a></li>
+<ul id="tabset-1" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-1-1">Algorithms in use</a></li>
+<li><a href="#tabset-1-2">For example (Spam mail classifier)</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-3-1">
+<div id="tabset-1-1">
 <ul>
 <li><p>Naïve Bayes</p></li>
 <li><p>Support Vector Machines</p></li>
@@ -766,7 +782,7 @@ W_{(t,d)}=tf_{(t,d)} \times log(\frac{N}{df_{t}})
 <li><p>Decision Trees</p></li>
 </ul>
 </div>
-<div id="tabset-3-2">
+<div id="tabset-1-2">
 <p><strong>Bayes’ Theorem</strong></p>
 <blockquote>
 <p>Bayes’ theorem is a fundamental theorem in probability theory that describes the relationship between the conditional probabilities of two events (here, A and B). It states that the probability of event A given event B is equal to the probability of event B given event A multiplied by the probability of event A, divided by the probability of event B. Mathematically, this can be written as:</p>
@@ -839,17 +855,15 @@ P(Spam|Viagra) = \frac{P(Viagra|Spam)P(Spam)}{P(Viagra)}
 </div>
 </div>
 </div>
-</section><section id="text-mining-techniques-5" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
-<p><br></p>
+</section><section id="text-mining-techniques-9" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
 <h3 id="text-clustering">Text Clustering</h3>
 <div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-4-1">K-means Clustering</a></li>
-<li><a href="#tabset-4-2">Hierarchical Clustering</a></li>
-<li><a href="#tabset-4-3">Latent Dirichlet Allocation (LDA)</a></li>
+<ul id="tabset-2" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-2-1">K-means Clustering</a></li>
+<li><a href="#tabset-2-2">Hierarchical Clustering</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-4-1">
+<div id="tabset-2-1">
 <ul>
 <li><p>Partitional clustering method that assigns documents to a fixed number of clusters</p></li>
 <li><p>Suitable for larger datasets</p></li>
@@ -892,7 +906,7 @@ P(Spam|Viagra) = \frac{P(Viagra|Spam)P(Spam)}{P(Viagra)}
 </div>
 </div>
 </div>
-<div id="tabset-4-2">
+<div id="tabset-2-2">
 <ul>
 <li><p>Agglomerative clustering method that builds a tree of clusters</p></li>
 <li><p>Suitable for smaller datasets</p></li>
@@ -931,7 +945,90 @@ P(Spam|Viagra) = \frac{P(Viagra|Spam)P(Spam)}{P(Viagra)}
 </div>
 </div>
 </div>
-<div id="tabset-4-3">
+</div>
+</div>
+</section><section id="text-mining-techniques-10" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
+<hr>
+<h3 id="text-clustering-1">Text Clustering</h3>
+<h4 id="latent-dirichlet-allocation-lda-a.k.a.-topic-modeling">
+<strong>Latent Dirichlet Allocation (LDA)</strong> (a.k.a. topic modeling)</h4>
+
+<img data-src="img/fig_6.png" class="r-stretch"></section><section id="text-mining-techniques-11" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
+<hr>
+<h3 id="text-clustering-2">Text Clustering</h3>
+<h4 id="latent-dirichlet-allocation-lda-a.k.a.-topic-modeling-1">
+<strong>Latent Dirichlet Allocation (LDA)</strong> (a.k.a. topic modeling)</h4>
+
+<img data-src="img/fig_7.png" class="r-stretch"></section><section id="text-mining-techniques-12" class="slide level2"><h2>Text Mining Techniques</h2>
+<hr>
+<h3 id="text-clustering-3">Text Clustering</h3>
+<h4 id="latent-dirichlet-allocation-lda-a.k.a.-topic-modeling-2">
+<strong>Latent Dirichlet Allocation (LDA)</strong> (a.k.a. topic modeling)</h4>
+<p><br></p>
+<ul>
+<li>
+<p>대용량 문서자료 내에 잠재된 주제를 어떻게 파악할 수 있을까?</p>
+<ul>
+<li><p>SNS: 사람들이 어떤 주제로 교류하고 있는지?</p></li>
+<li><p>뉴스기사: 어떠한 내용들이 보도되고 있는지?</p></li>
+<li><p>논문/특허: 어떠한 내용들이 연구개발되고 있는지?</p></li>
+<li><p>제품/서비스리뷰: 고객들이 제품/서비스에 대해 어떠한 생각을 가지고 있는지?</p></li>
+</ul>
+</li>
+</ul></section><section id="text-mining-techniques-13" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
+<hr>
+<h3 id="text-clustering-4">Text Clustering</h3>
+<h4 id="latent-dirichlet-allocation-lda-a.k.a.-topic-modeling-3">
+<strong>Latent Dirichlet Allocation (LDA)</strong> (a.k.a. topic modeling)</h4>
+<ul>
+<li>
+<p>대량의 문서자료의 분석에 많이 쓰이는 분석도구</p>
+<ul>
+<li>문서 내 잠재되어있는 토픽(주제)를 식별함</li>
+</ul>
+</li>
+<li>
+<p>토픽은 단어들 사이의 공동출현패턴을 기반으로 식별됨</p>
+<ul>
+<li><p>함께 나타나는 경향이 짙은 단어들의 확률적 조합으로 ’토픽’을 식별</p></li>
+<li><p>확률적 조합이기 때문에 한단어가 여러 토픽에 속할수 있음</p></li>
+</ul>
+</li>
+<li>
+<p>한 단어가 여러 토픽(주제)에서 가지는 다양한 맥락적 의미를 분석할 수 있음</p>
+<ul>
+<li><p>예) “타격”이라는 단어가 경제 기사와 스포츠 기사에서 가지는 의미?</p></li>
+<li><p>예) “cell”이라는 단어가 생물학 논문과 연료전지 관련 논문에서 가지는 의미?</p></li>
+</ul>
+</li>
+<li>
+<p>자료수집 범위에 따라 아주 세부적인 맥락 차이도 분석가능</p>
+<ul>
+<li>예) 신기술 관련 문서 집합을 분석했을 때, 똑같이 “자동차”라는 단어가 비중있게 등장하지만 세부적인 맥락은 “전기”자동차와 “자율주행” 자동차로 나뉨</li>
+</ul>
+</li>
+<li>
+<p>식별된 토픽을 구성하는 상위 단어들의 구성을 관찰한 후, 연구자가 해당 토픽이 무슨내용인지 유추</p>
+<ul>
+<li>해석적 여지가 많은 탐색적 방법론</li>
+</ul>
+</li>
+</ul></section><section id="text-mining-techniques-14" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
+<hr>
+<h3 id="text-clustering-5">Text Clustering</h3>
+<h4 id="latent-dirichlet-allocation-lda-a.k.a.-topic-modeling-4">
+<strong>Latent Dirichlet Allocation (LDA)</strong> (a.k.a. topic modeling)</h4>
+
+<img data-src="img/fig_8.png" class="r-stretch"></section><section id="text-mining-techniques-15" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
+<hr>
+<h3 id="text-clustering-6">Text Clustering</h3>
+<h4 id="latent-dirichlet-allocation-lda-a.k.a.-topic-modeling-5">
+<strong>Latent Dirichlet Allocation (LDA)</strong> (a.k.a. topic modeling)</h4>
+
+<img data-src="img/fig_9.png" class="r-stretch"></section><section id="text-mining-techniques-16" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
+<h3 id="text-clustering-7">Text Clustering</h3>
+<h4 id="latent-dirichlet-allocation-lda-a.k.a.-topic-modeling-6">
+<strong>Latent Dirichlet Allocation (LDA)</strong> (a.k.a. topic modeling)</h4>
 <ul>
 <li><p>Probabilistic topic modeling method that assigns documents to a mixture of topics</p></li>
 <li><p>Suitable for discovering latent topics in text data</p></li>
@@ -987,20 +1084,16 @@ Weighting          : term frequency (tf)</code></pre>
 5      5 Whales are mammals that live in the ocean.               2</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-</section><section id="text-mining-techniques-6" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
-<p><br></p>
+</section><section id="text-mining-techniques-17" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
 <h3 id="sentiment-analysis">Sentiment Analysis</h3>
 <div class="panel-tabset">
-<ul id="tabset-5" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-5-1">Lexicon-based methods</a></li>
-<li><a href="#tabset-5-2">Machine learning-based methods</a></li>
-<li><a href="#tabset-5-3">Deep learning-based methods</a></li>
+<ul id="tabset-3" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-3-1">Lexicon-based methods</a></li>
+<li><a href="#tabset-3-2">Machine learning-based methods</a></li>
+<li><a href="#tabset-3-3">Deep learning-based methods</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-5-1">
+<div id="tabset-3-1">
 <ul>
 <li><p>Utilize pre-defined lists of words with associated sentiment scores</p></li>
 <li><p>Calculate overall sentiment by aggregating scores of individual words</p></li>
@@ -1054,7 +1147,7 @@ Weighting          : term frequency (tf)</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-5-2">
+<div id="tabset-3-2">
 <ul>
 <li><p>Train a supervised machine learning model on labeled sentiment data</p></li>
 <li><p>Apply the trained model to predict sentiment of new text</p></li>
@@ -1114,7 +1207,7 @@ Weighting          : term frequency (tf)</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-5-3">
+<div id="tabset-3-3">
 <ul>
 <li><p>Train a deep learning model, such as a Recurrent Neural Network (RNN) or Transformer, on labeled sentiment data</p></li>
 <li><p>Apply the trained model to predict sentiment of new text</p></li>
@@ -1122,17 +1215,16 @@ Weighting          : term frequency (tf)</code></pre>
 </div>
 </div>
 </div>
-</section><section id="text-mining-techniques-7" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
-<p><br></p>
+</section><section id="text-mining-techniques-18" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
 <h3 id="named-entity-recognition">Named Entity Recognition</h3>
 <div class="panel-tabset">
-<ul id="tabset-6" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-6-1">Rule-based methods</a></li>
-<li><a href="#tabset-6-2">Machine learning-based methods</a></li>
-<li><a href="#tabset-6-3">Deep learning-based methods</a></li>
+<ul id="tabset-4" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-4-1">Rule-based methods</a></li>
+<li><a href="#tabset-4-2">Machine learning-based methods</a></li>
+<li><a href="#tabset-4-3">Deep learning-based methods</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-6-1">
+<div id="tabset-4-1">
 <ul>
 <li><p>Utilize predefined patterns and rules to identify entities in text</p></li>
 <li><p>Examples include regular expressions and dictionary lookups</p></li>
@@ -1179,13 +1271,13 @@ Weighting          : term frequency (tf)</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-6-2">
+<div id="tabset-4-2">
 <ul>
 <li><p>Train a supervised machine learning model on labeled entity data</p></li>
 <li><p>Apply the trained model to recognize entities in new text</p></li>
 </ul>
 </div>
-<div id="tabset-6-3">
+<div id="tabset-4-3">
 <ul>
 <li><p>Train a deep learning model, such as a BiLSTM-CRF or Transformer, on labeled entity data</p></li>
 <li><p>Apply the trained model to recognize entities in new text</p></li>
@@ -1193,23 +1285,22 @@ Weighting          : term frequency (tf)</code></pre>
 </div>
 </div>
 </div>
-</section><section id="text-mining-techniques-8" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
-<p><br></p>
+</section><section id="text-mining-techniques-19" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
 <h3 id="relation-extraction">Relation Extraction</h3>
 <div class="panel-tabset">
-<ul id="tabset-7" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-7-1"><strong>Theoretical Foundation</strong></a></li>
-<li><a href="#tabset-7-2"><strong>Implications for Research</strong></a></li>
+<ul id="tabset-5" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-5-1"><strong>Theoretical Foundation</strong></a></li>
+<li><a href="#tabset-5-2"><strong>Implications for Research</strong></a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-7-1">
+<div id="tabset-5-1">
 <ul>
 <li><p>Keyword network analysis is grounded in social network analysis (SNA) and graph theory.</p></li>
 <li><p>SNA allows researchers to study relationships, interactions, and connections between entities (in this case, keywords).</p></li>
 <li><p>Graph theory provides a mathematical framework to analyze and visualize complex networks, allowing for a better understanding of the structure and organization of the data.</p></li>
 </ul>
 </div>
-<div id="tabset-7-2">
+<div id="tabset-5-2">
 <ol type="1">
 <li><p><strong>Identify key topics and themes</strong>: Keyword network analysis can help researchers identify the most important keywords or concepts in a given text dataset, providing insight into the main topics and themes.</p></li>
 <li><p><strong>Uncover hidden relationships</strong>: By visualizing and analyzing the connections between keywords, researchers can discover hidden relationships and patterns in the data that might not be apparent through traditional text analysis methods.</p></li>
@@ -1220,17 +1311,16 @@ Weighting          : term frequency (tf)</code></pre>
 </div>
 </div>
 </div>
-</section><section id="text-mining-techniques-9" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
-<p><br></p>
+</section><section id="text-mining-techniques-20" class="slide level2 scrollable"><h2>Text Mining Techniques</h2>
 <h3 id="relation-extraction-1">Relation Extraction</h3>
 <div class="panel-tabset">
-<ul id="tabset-8" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-8-1"><strong>A. Preprocessing and extracting keywords</strong></a></li>
-<li><a href="#tabset-8-2"><strong>B. Co-occurrence matrix and network</strong></a></li>
-<li><a href="#tabset-8-3"><strong>C. Analyzing keyword network</strong></a></li>
+<ul id="tabset-6" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-6-1"><strong>A. Preprocessing and extracting keywords</strong></a></li>
+<li><a href="#tabset-6-2"><strong>B. Co-occurrence matrix and network</strong></a></li>
+<li><a href="#tabset-6-3"><strong>C. Analyzing keyword network</strong></a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-8-1">
+<div id="tabset-6-1">
 <ul>
 <li><p>Tokenization</p></li>
 <li><p>Stop word removal</p></li>
@@ -1289,7 +1379,7 @@ Weighting          : term frequency (tf)</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-8-2">
+<div id="tabset-6-2">
 <ul>
 <li><p>Calculate word co-occurrence matrix</p></li>
 <li><p>Convert co-occurrence matrix to a graph object</p></li>
@@ -1325,9 +1415,9 @@ Weighting          : term frequency (tf)</code></pre>
 <span id="cb57-5"><a href="#cb57-5"></a>keyword_network <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(filtered_edges)</span>
 <span id="cb57-6"><a href="#cb57-6"></a>keyword_network</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH 1794a43 DN-- 13 88 -- 
+<pre><code>IGRAPH 0350ef0 DN-- 13 88 -- 
 + attr: name (v/c), n (e/n)
-+ edges from 1794a43 (vertex names):
++ edges from 0350ef0 (vertex names):
  [1] text      -&gt;mining   mining    -&gt;text     mining    -&gt;data    
  [4] data      -&gt;mining   text      -&gt;data     learning  -&gt;mining  
  [7] analysis  -&gt;mining   machine   -&gt;mining   mining    -&gt;learning
@@ -1364,7 +1454,7 @@ Weighting          : term frequency (tf)</code></pre>
 <li><p>The term ‘machine learning’ is connected to ‘<em>text mining</em>’, ‘<em>data mining</em>’, and ‘analysis’, highlighting its importance and relevance to different data analysis techniques.</p></li>
 </ul>
 </div>
-<div id="tabset-8-3">
+<div id="tabset-6-3">
 <ul>
 <li><p><code>Degree centrality</code>: Number of connections for each node</p></li>
 <li><p><code>Betweenness centrality</code>: Importance of a node as a connector in the network</p></li>
@@ -1466,49 +1556,104 @@ Weighting          : term frequency (tf)</code></pre>
 </div>
 </div>
 </section><section id="applications-in-academic-research-1" class="slide level2"><h2>Applications in Academic Research</h2>
+<hr>
+<h3 id="literature-reviews-and-meta-analyses"><strong>Literature Reviews and Meta-Analyses:</strong></h3>
+<div>
+<ol type="1">
+<li class="fragment"><p><strong>Summarization of articles</strong> <em>(Keywords and Topics)</em>: Text mining techniques can extract keywords and main topics from research articles, allowing researchers to quickly understand the content and focus of a given paper.</p></li>
+<li class="fragment"><p><strong>Meta-analysis:</strong> By aggregating and analyzing findings from multiple research studies, text mining can help researchers <u>draw more reliable conclusions and identify patterns and trends across a body of literature</u>.</p></li>
+<li class="fragment"><p><strong>Identifying research trends and gaps:</strong> Text mining can help researchers <u>identify emerging research trends, patterns, and potential gaps in the literature</u> by analyzing large collections of articles and tracking the frequency of specific terms, phrases, and topics over time.</p></li>
+</ol>
+<!-- --><ol start="4" type="1">
+<li class="fragment"><p><strong>Analyzing online academic discussions:</strong> Researchers can use text mining <u>to analyze discussions from academic forums, social media, and other online platforms</u>, providing insights into prevailing opinions, questions, and debates within the research community.</p></li>
+<li class="fragment"><p><strong>Citation network analysis:</strong> Text mining can be used to create <u>citation networks, which help researchers visualize the relationships between publications, authors, and research topics</u>, enabling them to identify influential works and collaboration patterns in their field.</p></li>
+</ol>
+</div>
+</section><section id="applications-in-academic-research-2" class="slide level2"><h2>Applications in Academic Research</h2>
+<hr>
+<h3 id="social-media-analysis-for-public-opinion-on-academic-topics"><strong>Social Media Analysis for Public Opinion on Academic Topics:</strong></h3>
+<div>
+<ol type="1">
+<li class="fragment"><p><strong>Trend, Keywords, and topic analysis:</strong> Text mining can be used to analyze social media content and identify popular trends, keywords, and topics related to academic research, giving researchers insights into public interest and awareness of their research area.</p></li>
+<li class="fragment"><p><strong>Information flow:</strong> By tracking the spread of information on social media platforms, researchers can understand how academic research findings are disseminated and shared among different communities, helping them develop strategies to improve communication and outreach.</p></li>
+<li class="fragment"><p><strong>Sentiment analysis:</strong> Text mining can be used to <u>analyze the sentiment of social media posts and comments related to academic research</u>, providing researchers with insights into public perceptions and opinions about specific research topics or findings.</p></li>
+<li class="fragment"><p><strong>Network analysis (among actors, keywords, etc.):</strong> Researchers can use text mining to analyze the relationships among different actors (e.g., individuals, organizations, or countries) and keywords within social media networks, helping them identify key influencers, collaboration opportunities, and areas of common interest. This analysis can provide valuable insights into the broader impact and reach of their research within various communities.</p></li>
+</ol>
+</div>
+</section><section id="applications-in-academic-research-3" class="slide level2"><h2>Applications in Academic Research</h2>
+<hr>
+
+<img data-src="img/fig_3.png" class="r-stretch"></section><section id="applications-in-academic-research-4" class="slide level2"><h2>Applications in Academic Research</h2>
+<hr>
+
+<img data-src="img/fig_4.png" class="r-stretch"></section><section id="applications-in-academic-research-5" class="slide level2"><h2>Applications in Academic Research</h2>
+<hr>
+
+<img data-src="img/fig_5.png" class="r-stretch"></section><section id="challenges-and-limitations-1" class="slide level2"><h2>Challenges and Limitations</h2>
+<hr>
 <p><br></p>
-<ul>
-<li>
-<p><strong>Literature reviews and meta-analyses</strong></p>
-<ul>
-<li><p>Summarization of articles (Keywords and Topics)</p></li>
-<li><p>Meta-analysis</p></li>
-<li><p>Identifying research trends and gaps</p></li>
-<li><p>Analyzing online academic discussions</p></li>
-<li><p>Citation network analysis</p></li>
-</ul>
-</li>
-</ul>
+<p><strong>A. Handling unstructured and noisy data:</strong></p>
+<ol type="1">
+<li><p><strong>Heterogeneous formats:</strong> Academic research articles and texts come in various formats, such as PDFs, Word documents, and HTML. Text mining techniques need to handle and convert these diverse formats into structured data for analysis.</p></li>
+<li><p><strong>Data cleaning:</strong> Raw text data usually contain typos, grammatical errors, and inconsistencies that can affect the accuracy of the analysis. Text mining techniques must be robust enough to address these issues and clean the data.</p></li>
+<li><p><strong>Ambiguity:</strong> Text data often contain ambiguous terms, phrases, or sentences that can have multiple interpretations. Identifying and resolving these ambiguities is a significant challenge in text mining.</p></li>
+</ol></section><section id="challenges-and-limitations-2" class="slide level2"><h2>Challenges and Limitations</h2>
+<hr>
 <p><br></p>
-<ul>
-<li>
-<p><strong>Social media analysis for public opinion on academic topics</strong></p>
-<ul>
-<li><p>Trend, Keywords, and topic analysis</p></li>
-<li><p>Information flow</p></li>
-<li><p>Detection of false news</p></li>
-<li><p>Sentiment analysis</p></li>
-<li><p>Network analysis (among actors, keywords, etc)</p></li>
-</ul>
-</li>
-</ul></section><section id="challenges-and-limitations-1" class="slide level2"><h2>Challenges and Limitations</h2>
+<p><strong>B. Addressing language and domain-specific challenges:</strong></p>
+<ol type="1">
+<li><p><strong>Multilingual texts:</strong> Academic research is published in multiple languages, requiring text mining techniques to be adaptable to different languages and character sets.</p></li>
+<li><p><strong>Domain-specific jargon:</strong> Each research domain has its terminology and phrases that may not be easily understood by generic text mining tools. Developing techniques that can understand and analyze these domain-specific terms is crucial.</p></li>
+<li><p><strong>Context-dependent meaning:</strong> The meaning of a term or phrase may vary depending on the context it is used in. Text mining techniques need to be able to accurately capture and understand these context-dependent meanings.</p></li>
+</ol></section><section id="challenges-and-limitations-3" class="slide level2"><h2>Challenges and Limitations</h2>
+<hr>
 <p><br></p>
-<p>A. Handling unstructured and noisy data</p>
+<p><strong>C. Ethical and legal considerations:</strong></p>
+<ol type="1">
+<li><p><strong>Data privacy:</strong> Text mining may involve processing sensitive information, such as personal or proprietary data. Researchers must ensure that they adhere to data privacy regulations and protect the confidentiality of the data.</p></li>
+<li><p><strong>Copyright and intellectual property:</strong> Text mining techniques may involve the use of copyrighted material. It is essential to understand and comply with copyright laws and obtain the necessary permissions for using such content.</p></li>
+<li><p><strong>Bias and fairness:</strong> Text mining algorithms can inadvertently perpetuate biases present in the training data. Researchers should be aware of potential biases and develop strategies to mitigate their impact on the analysis.</p></li>
+</ol></section><section id="challenges-and-limitations-4" class="slide level2"><h2>Challenges and Limitations</h2>
+<hr>
 <p><br></p>
-<p>B. Addressing language and domain-specific challenges</p>
+<p><strong>D. Scalability and computational complexity:</strong></p>
+<ol type="1">
+<li><p><strong>Large datasets:</strong> Academic research data can be vast, and text mining techniques need to be able to efficiently handle and process these large datasets.</p></li>
+<li><p><strong>High dimensionality:</strong> Text data is inherently high-dimensional due to the vast number of unique words and phrases. Techniques must be able to manage this high dimensionality to avoid the “curse of dimensionality” and maintain computational efficiency.</p></li>
+<li><p><strong>Real-time processing:</strong> In some cases, text mining applications may require real-time analysis and processing of text data. Developing techniques that can handle real-time processing demands while maintaining accuracy is a significant challenge.</p></li>
+</ol></section><section id="conclusion-and-future-directions" class="slide level2"><h2>Conclusion and Future Directions</h2>
+<hr>
 <p><br></p>
-<p>C. Ethical and legal considerations</p>
+<p><strong>A. The growing importance of text mining in academic research:</strong></p>
+<ol type="1">
+<li><p><strong>Expanding data sources:</strong> With the exponential growth of digital content and the increasing accessibility of various data sources, text mining will continue to play a pivotal role in extracting valuable information and insights from large volumes of unstructured data.</p></li>
+<li><p><strong>Facilitating knowledge discovery:</strong> Text mining techniques enable researchers to identify patterns, trends, and relationships within and across research domains that may not be evident through traditional research methods.</p></li>
+<li><p><strong>Enhancing research efficiency:</strong> By automating data analysis and processing tasks, text mining can save researchers time and resources, allowing them to focus on more in-depth analysis and interpretation of results.</p></li>
+</ol></section><section id="conclusion-and-future-directions-1" class="slide level2"><h2>Conclusion and Future Directions</h2>
+<hr>
 <p><br></p>
-<p>D. Scalability and computational complexity</p>
-</section><section id="conclusion-and-future-directions" class="slide level2"><h2>Conclusion and Future Directions</h2>
+<p><strong>B. Continued development of new techniques and methodologies:</strong></p>
+<ol type="1">
+<li><p><strong>Machine learning and artificial intelligence:</strong> The integration of machine learning and artificial intelligence methods into text mining will lead to more sophisticated and accurate analysis techniques, capable of handling complex and ambiguous language structures.</p></li>
+<li><p><strong>Natural language processing advancements:</strong> Ongoing improvements in natural language processing will enable more accurate understanding and interpretation of human language in text data, leading to better results in text mining tasks.</p></li>
+<li><p><strong>Domain-specific tools:</strong> The development of specialized text mining tools tailored to specific research domains will facilitate more accurate and efficient analysis of domain-specific jargon and concepts.</p></li>
+</ol></section><section id="conclusion-and-future-directions-2" class="slide level2"><h2>Conclusion and Future Directions</h2>
+<hr>
 <p><br></p>
-<p>A. The growing importance of text mining in academic research</p>
+<p><strong>C. Encouraging interdisciplinary collaboration and research:</strong></p>
+<ol type="1">
+<li><p><strong>Cross-disciplinary partnerships:</strong> Collaborations between computer scientists, linguists, and domain experts will foster the development of novel techniques and approaches that address the unique challenges of text mining in specific research areas.</p></li>
+<li><p><strong>Shared resources and infrastructure:</strong> Establishing shared platforms, datasets, and software tools will encourage researchers from different disciplines to explore text mining applications, promoting innovation and knowledge exchange.</p></li>
+<li><p><strong>Training and education:</strong> Providing training and educational opportunities in text mining will help researchers across disciplines develop the skills needed to apply text mining techniques effectively in their research.</p></li>
+</ol></section><section id="conclusion-and-future-directions-3" class="slide level2"><h2>Conclusion and Future Directions</h2>
+<hr>
 <p><br></p>
-<p>B. Continued development of new techniques and methodologies</p>
-<p><br></p>
-<p>C. Encouraging interdisciplinary collaboration and research</p>
-<p><br></p>
-<p>D. Addressing challenges and limitations for more robust applications</p>
+<p><strong>D. Addressing challenges and limitations for more robust applications:</strong></p>
+<ol type="1">
+<li><p><strong>Tackling unstructured and noisy data:</strong> Developing techniques to better handle, clean, and preprocess unstructured and noisy data will improve the accuracy and reliability of text mining applications in academic research.</p></li>
+<li><p><strong>Addressing ethical and legal concerns:</strong> Researchers must continue to engage in discussions and develop guidelines to address data privacy, copyright, and intellectual property issues related to text mining.</p></li>
+<li><p><strong>Improving scalability and computational efficiency:</strong> As the volume of data continues to grow, researchers need to develop more scalable and computationally efficient text mining techniques to handle large-scale datasets and real-time processing demands.</p></li>
+</ol>
 
 <img src="img/HYU_logo_singlecolor_png.png" class="slide-logo r-stretch"><div class="footer footer-default">
 

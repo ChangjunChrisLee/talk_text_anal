@@ -108,6 +108,7 @@ library(ggrepel)
 
 <div>
 
+::: incremental
 -   **Growth of digital text data**: Exponential increase in research
     publications, conference proceedings, and digital repositories.
 
@@ -115,25 +116,38 @@ library(ggrepel)
     manual labor and time-consuming tasks.
 
 -   **Uncovering hidden patterns**: Detects patterns, trends, and
-    relationships in large datasets that are not easily discernible through
-    manual analysis.
+    relationships in large datasets that are not easily done through manual
+    analysis.
 
 -   **Enhancing interdisciplinary research**: Facilitates collaboration and
     knowledge transfer between different research fields by discovering
     connections and insights across disciplines.
 
 -   **Importance in Media Studies**: Analyzing vast amounts of media
-    content (news articles, social media posts, multimedia transcripts) to
+    content (news articles, social media posts, multimedia transcripts) [to
     understand public opinion, sentiment, and the impact of media on
-    society. Text mining enables efficient examination of media biases,
-    framing, and agenda-setting, as well as tracking emerging trends and
-    topics.
+    society]{.underline}. Text mining enables efficient examination of
+    *media biases, framing, and agenda-setting*, as well as tracking
+    *emerging trends and topics.*
+:::
 
 </div>
 
 ## Introduction
 
-<br>
+<hr>
+
+![](img/fig_1.png)
+
+## Introduction
+
+<hr>
+
+![](img/fig_2.png)
+
+## Introduction
+
+<hr>
 
 ### **Unlocking the Power of Text Data**
 
@@ -161,7 +175,7 @@ library(ggrepel)
 
 ## Overview of the talk
 
-<br>
+<hr>
 
 ### **🛠️ Text Mining Techniques**
 
@@ -187,9 +201,10 @@ library(ggrepel)
 
 ## Text Mining Techniques
 
-<br>
+<hr>
 
-**A.** `Pre-processing:` The foundation for accurate analysis
+**A.** `Pre-processing:` The foundation for accurate analysis (70% time &
+labour)
 
 <br>
 
@@ -219,10 +234,11 @@ text
 
 ## Text Mining Techniques {.scrollable}
 
+<hr>
+
 ### Pre-processing
 
-::: panel-tabset
-## Tokenization
+#### **Tokenization**
 
 > Splitting text into individual words or tokens
 
@@ -237,7 +253,13 @@ tokens
 
 ```
 
-## Stop word removal
+## Text Mining Techniques {.scrollable}
+
+<hr>
+
+### Pre-processing
+
+#### **Stop word removal**
 
 > Removing common words that do not contribute to meaning
 
@@ -251,25 +273,31 @@ tokens_clean
 
 ```
 
-## Stemming and Lemmatization
+## Text Mining Techniques {.scrollable}
+
+<hr>
+
+### Pre-processing
+
+#### **Stemming and Lemmatization**
 
 > Reducing words to their root or base form
+>
+> 한글에서는 형태소 분석 (명사, 동사, 형용사 등으로 분해)
 
 ```{r}
 tokens_root <- tokens_clean %>% 
   mutate(lemma = lemmatize_words(word))
 tokens_root
 ```
-:::
 
 ## Text Mining Techniques {.scrollable}
 
-<br>
+<hr>
 
 ### Feature Extraction
 
-::: panel-tabset
-## Bag of Words
+#### **Bag of Words**
 
 > Creating a document-term matrix with word frequencies
 
@@ -294,7 +322,13 @@ bow <- tokens %>%
 bow
 ```
 
-## Term Frequency-Inverse Document Frequency (TF-IDF)
+## Text Mining Techniques {.scrollable}
+
+<hr>
+
+### Feature Extraction
+
+#### **Term Frequency-Inverse Document Frequency (TF-IDF)**
 
 > Weighting words $W_{(t,d)}$ based on their importance within and across
 > documents to see how the term ***t*** is original (or unique) is in a
@@ -304,14 +338,18 @@ $$
 W_{(t,d)}=tf_{(t,d)} \times idf_{(t)}
 $$ $$
 W_{(t,d)}=tf_{(t,d)} \times log(\frac{N}{df_{t}})
-$$ - $t$ = a term
+$$
 
--   $d$ = a document
+-   $t$ : a term
 
--   $tf_{t,d}$ = frequency of term $t$ (e.g. a word) in doc $d$ (e.g. a
+-   $d$ : a document
+
+-   $tf_{t,d}$ : frequency of term $t$ (e.g. a word) in doc $d$ (e.g. a
     sentence or an article)
 
--   $df_{term}$ = \# of documents containing the term
+-   $df_{term}$ : \# of documents containing the term
+
+-   $N$ : total number of documents
 
 > A high $tf_{t,d}$ indicates that the term is highly significant within
 > the document, while a high $df_{t}$ suggests that the term is widely used
@@ -319,6 +357,8 @@ $$ - $t$ = a term
 > helps to account for the term's universality. Ultimately, tf-idf
 > effectively captures a term's uniqueness and importance, taking into
 > consideration its prevalence across documents.
+
+<hr>
 
 As an example,
 
@@ -337,11 +377,35 @@ tf_idf_matrix
 
 ```
 
-## Word Embeddings
+<hr>
+
+Another example: Moon vs. Park speech
+
+-   Compare two speeches based on the just frequency of words
+
+![](https://changjunlee.com/teaching/media_ds/about/NLP_2_files/figure-html/unnamed-chunk-16-1.png)
+
+-   Compare based on TF-IDF
+
+![](https://changjunlee.com/teaching/media_ds/about/NLP_2_files/figure-html/unnamed-chunk-37-1.png)
+
+## Text Mining Techniques {.scrollable}
+
+<hr>
+
+### Feature Extraction
+
+#### **Word Embeddings**
 
 > Mapping words to continuous vector spaces based on their semantic
 > relationships
 
+::: columns
+::: {.column width="40%"}
+![](https://www.researchgate.net/profile/Dingcheng-Li-2/publication/332892222/figure/fig2/AS:755762527739904@1557199236483/2D-PCA-projection-of-word-embeddings-Five-different-word-clusters-are-shown_W640.jpg)
+:::
+
+::: {.column width="60%"}
 -   Represents words as fixed-size vectors in continuous space
 
 -   Captures semantic relationships and linguistic patterns between words
@@ -357,10 +421,9 @@ tf_idf_matrix
 -   **Applications**: sentiment analysis, document classification, language
     translation, information retrieval
 :::
+:::
 
 ## Text Mining Techniques {.scrollable}
-
-<br>
 
 ### Text Classification
 
@@ -499,8 +562,6 @@ $$
 
 ## Text Mining Techniques {.scrollable}
 
-<br>
-
 ### Text Clustering
 
 ::: panel-tabset
@@ -544,8 +605,111 @@ hc <- hclust(dist_matrix, method = "ward.D2")
 plot(hc)
 
 ```
+:::
 
-## Latent Dirichlet Allocation (LDA)
+## Text Mining Techniques {.scrollable}
+
+<hr>
+
+### Text Clustering
+
+#### **Latent Dirichlet Allocation (LDA)** (a.k.a. topic modeling)
+
+![](img/fig_6.png)
+
+## Text Mining Techniques {.scrollable}
+
+<hr>
+
+### Text Clustering
+
+#### **Latent Dirichlet Allocation (LDA)** (a.k.a. topic modeling)
+
+![](img/fig_7.png)
+
+## Text Mining Techniques 
+
+<hr>
+
+### Text Clustering
+
+#### **Latent Dirichlet Allocation (LDA)** (a.k.a. topic modeling)
+
+<br>
+
+-   대용량 문서자료 내에 잠재된 주제를 어떻게 파악할 수 있을까?
+
+    -   SNS: 사람들이 어떤 주제로 교류하고 있는지?
+
+    -   뉴스기사: 어떠한 내용들이 보도되고 있는지?
+
+    -   논문/특허: 어떠한 내용들이 연구개발되고 있는지?
+
+    -   제품/서비스리뷰: 고객들이 제품/서비스에 대해 어떠한 생각을 가지고
+        있는지?
+
+## Text Mining Techniques {.scrollable}
+
+<hr>
+
+### Text Clustering
+
+#### **Latent Dirichlet Allocation (LDA)** (a.k.a. topic modeling)
+
+-   대량의 문서자료의 분석에 많이 쓰이는 분석도구
+
+    -   문서 내 잠재되어있는 토픽(주제)를 식별함
+
+-   토픽은 단어들 사이의 공동출현패턴을 기반으로 식별됨
+
+    -   함께 나타나는 경향이 짙은 단어들의 확률적 조합으로 '토픽'을 식별
+
+    -   확률적 조합이기 때문에 한단어가 여러 토픽에 속할수 있음
+
+-   한 단어가 여러 토픽(주제)에서 가지는 다양한 맥락적 의미를 분석할 수
+    있음
+
+    -   예) "타격"이라는 단어가 경제 기사와 스포츠 기사에서 가지는 의미?
+
+    -   예) "cell"이라는 단어가 생물학 논문과 연료전지 관련 논문에서 가지는
+        의미?
+
+-   자료수집 범위에 따라 아주 세부적인 맥락 차이도 분석가능
+
+    -   예) 신기술 관련 문서 집합을 분석했을 때, 똑같이 "자동차"라는 단어가
+        비중있게 등장하지만 세부적인 맥락은 "전기"자동차와 "자율주행"
+        자동차로 나뉨
+
+-   식별된 토픽을 구성하는 상위 단어들의 구성을 관찰한 후, 연구자가 해당
+    토픽이 무슨내용인지 유추
+
+    -   해석적 여지가 많은 탐색적 방법론
+
+## Text Mining Techniques {.scrollable}
+
+<hr>
+
+### Text Clustering
+
+#### **Latent Dirichlet Allocation (LDA)** (a.k.a. topic modeling)
+
+![](img/fig_8.png)
+
+## Text Mining Techniques {.scrollable}
+
+<hr>
+
+### Text Clustering
+
+#### **Latent Dirichlet Allocation (LDA)** (a.k.a. topic modeling)
+
+![](img/fig_9.png)
+
+## Text Mining Techniques {.scrollable}
+
+### Text Clustering
+
+#### **Latent Dirichlet Allocation (LDA)** (a.k.a. topic modeling)
 
 -   Probabilistic topic modeling method that assigns documents to a mixture
     of topics
@@ -574,11 +738,8 @@ text_df %>%
 
 
 ```
-:::
 
 ## Text Mining Techniques {.scrollable}
-
-<br>
 
 ### Sentiment Analysis
 
@@ -645,8 +806,6 @@ predictions
 
 ## Text Mining Techniques {.scrollable}
 
-<br>
-
 ### Named Entity Recognition
 
 ::: panel-tabset
@@ -704,8 +863,6 @@ str_match_all(text_df$text, relation_pattern) %>%
 
 ## Text Mining Techniques {.scrollable}
 
-<br>
-
 ### Relation Extraction
 
 ::: panel-tabset
@@ -745,18 +902,13 @@ str_match_all(text_df$text, relation_pattern) %>%
     analysis of keyword networks can help researchers generate and validate
     hypotheses about the relationships between different concepts, leading
     to a deeper understanding of the underlying phenomena.
-
 :::
 
 ## Text Mining Techniques {.scrollable}
 
-<br>
-
 ### Relation Extraction
 
 ::: panel-tabset
-
-
 ## **A. Preprocessing and extracting keywords**
 
 -   Tokenization
@@ -958,70 +1110,268 @@ ggraph(keyword_network) +
 ```
 :::
 
+## Applications in Academic Research
 
+<hr>
+
+### **Literature Reviews and Meta-Analyses:**
+
+::: incremental
+1.  **Summarization of articles** *(Keywords and Topics)*: Text mining
+    techniques can extract keywords and main topics from research articles,
+    allowing researchers to quickly understand the content and focus of a
+    given paper.
+
+2.  **Meta-analysis:** By aggregating and analyzing findings from multiple
+    research studies, text mining can help researchers [draw more reliable
+    conclusions and identify patterns and trends across a body of
+    literature]{.underline}.
+
+3.  **Identifying research trends and gaps:** Text mining can help
+    researchers [identify emerging research trends, patterns, and potential
+    gaps in the literature]{.underline} by analyzing large collections of
+    articles and tracking the frequency of specific terms, phrases, and
+    topics over time.
+
+```{=html}
+<!-- -->
+```
+4.  **Analyzing online academic discussions:** Researchers can use text
+    mining [to analyze discussions from academic forums, social media, and
+    other online platforms]{.underline}, providing insights into prevailing
+    opinions, questions, and debates within the research community.
+
+5.  **Citation network analysis:** Text mining can be used to create
+    [citation networks, which help researchers visualize the relationships
+    between publications, authors, and research topics]{.underline},
+    enabling them to identify influential works and collaboration patterns
+    in their field.
+:::
 
 ## Applications in Academic Research
 
-<br>
+<hr>
 
--   **Literature reviews and meta-analyses**
+### **Social Media Analysis for Public Opinion on Academic Topics:**
 
-    -   Summarization of articles (Keywords and Topics)
+::: incremental
+1.  **Trend, Keywords, and topic analysis:** Text mining can be used to
+    analyze social media content and identify popular trends, keywords, and
+    topics related to academic research, giving researchers insights into
+    public interest and awareness of their research area.
 
-    -   Meta-analysis
+2.  **Information flow:** By tracking the spread of information on social
+    media platforms, researchers can understand how academic research
+    findings are disseminated and shared among different communities,
+    helping them develop strategies to improve communication and outreach.
 
-    -   Identifying research trends and gaps
+3.  **Sentiment analysis:** Text mining can be used to [analyze the
+    sentiment of social media posts and comments related to academic
+    research]{.underline}, providing researchers with insights into public
+    perceptions and opinions about specific research topics or findings.
 
-    -   Analyzing online academic discussions
+4.  **Network analysis (among actors, keywords, etc.):** Researchers can
+    use text mining to analyze the relationships among different actors
+    (e.g., individuals, organizations, or countries) and keywords within
+    social media networks, helping them identify key influencers,
+    collaboration opportunities, and areas of common interest. This
+    analysis can provide valuable insights into the broader impact and
+    reach of their research within various communities.
+:::
 
-    -   Citation network analysis
+## Applications in Academic Research
 
-<br>
+<hr>
 
--   **Social media analysis for public opinion on academic topics**
+![](img/fig_3.png)
 
-    -   Trend, Keywords, and topic analysis
+## Applications in Academic Research
 
-    -   Information flow
+<hr>
 
-    -   Detection of false news
+![](img/fig_4.png)
 
-    -   Sentiment analysis
+## Applications in Academic Research
 
-    -   Network analysis (among actors, keywords, etc)
+<hr>
+
+![](img/fig_5.png)
 
 ## Challenges and Limitations
 
-<br>
-
-A. Handling unstructured and noisy data
+<hr>
 
 <br>
 
-B. Addressing language and domain-specific challenges
+**A. Handling unstructured and noisy data:**
+
+1.  **Heterogeneous formats:** Academic research articles and texts come in
+    various formats, such as PDFs, Word documents, and HTML. Text mining
+    techniques need to handle and convert these diverse formats into
+    structured data for analysis.
+
+2.  **Data cleaning:** Raw text data usually contain typos, grammatical
+    errors, and inconsistencies that can affect the accuracy of the
+    analysis. Text mining techniques must be robust enough to address these
+    issues and clean the data.
+
+3.  **Ambiguity:** Text data often contain ambiguous terms, phrases, or
+    sentences that can have multiple interpretations. Identifying and
+    resolving these ambiguities is a significant challenge in text mining.
+
+## Challenges and Limitations
+
+<hr>
 
 <br>
 
-C. Ethical and legal considerations
+**B. Addressing language and domain-specific challenges:**
+
+1.  **Multilingual texts:** Academic research is published in multiple
+    languages, requiring text mining techniques to be adaptable to
+    different languages and character sets.
+
+2.  **Domain-specific jargon:** Each research domain has its terminology
+    and phrases that may not be easily understood by generic text mining
+    tools. Developing techniques that can understand and analyze these
+    domain-specific terms is crucial.
+
+3.  **Context-dependent meaning:** The meaning of a term or phrase may vary
+    depending on the context it is used in. Text mining techniques need to
+    be able to accurately capture and understand these context-dependent
+    meanings.
+
+## Challenges and Limitations
+
+<hr>
 
 <br>
 
-D. Scalability and computational complexity
+**C. Ethical and legal considerations:**
+
+1.  **Data privacy:** Text mining may involve processing sensitive
+    information, such as personal or proprietary data. Researchers must
+    ensure that they adhere to data privacy regulations and protect the
+    confidentiality of the data.
+
+2.  **Copyright and intellectual property:** Text mining techniques may
+    involve the use of copyrighted material. It is essential to understand
+    and comply with copyright laws and obtain the necessary permissions for
+    using such content.
+
+3.  **Bias and fairness:** Text mining algorithms can inadvertently
+    perpetuate biases present in the training data. Researchers should be
+    aware of potential biases and develop strategies to mitigate their
+    impact on the analysis.
+
+## Challenges and Limitations
+
+<hr>
+
+<br>
+
+**D. Scalability and computational complexity:**
+
+1.  **Large datasets:** Academic research data can be vast, and text mining
+    techniques need to be able to efficiently handle and process these
+    large datasets.
+
+2.  **High dimensionality:** Text data is inherently high-dimensional due
+    to the vast number of unique words and phrases. Techniques must be able
+    to manage this high dimensionality to avoid the "curse of
+    dimensionality" and maintain computational efficiency.
+
+3.  **Real-time processing:** In some cases, text mining applications may
+    require real-time analysis and processing of text data. Developing
+    techniques that can handle real-time processing demands while
+    maintaining accuracy is a significant challenge.
 
 ## Conclusion and Future Directions
 
-<br>
-
-A. The growing importance of text mining in academic research
+<hr>
 
 <br>
 
-B. Continued development of new techniques and methodologies
+**A. The growing importance of text mining in academic research:**
+
+1.  **Expanding data sources:** With the exponential growth of digital
+    content and the increasing accessibility of various data sources, text
+    mining will continue to play a pivotal role in extracting valuable
+    information and insights from large volumes of unstructured data.
+
+2.  **Facilitating knowledge discovery:** Text mining techniques enable
+    researchers to identify patterns, trends, and relationships within and
+    across research domains that may not be evident through traditional
+    research methods.
+
+3.  **Enhancing research efficiency:** By automating data analysis and
+    processing tasks, text mining can save researchers time and resources,
+    allowing them to focus on more in-depth analysis and interpretation of
+    results.
+
+## Conclusion and Future Directions
+
+<hr>
 
 <br>
 
-C. Encouraging interdisciplinary collaboration and research
+**B. Continued development of new techniques and methodologies:**
+
+1.  **Machine learning and artificial intelligence:** The integration of
+    machine learning and artificial intelligence methods into text mining
+    will lead to more sophisticated and accurate analysis techniques,
+    capable of handling complex and ambiguous language structures.
+
+2.  **Natural language processing advancements:** Ongoing improvements in
+    natural language processing will enable more accurate understanding and
+    interpretation of human language in text data, leading to better
+    results in text mining tasks.
+
+3.  **Domain-specific tools:** The development of specialized text mining
+    tools tailored to specific research domains will facilitate more
+    accurate and efficient analysis of domain-specific jargon and concepts.
+
+## Conclusion and Future Directions
+
+<hr>
 
 <br>
 
-D. Addressing challenges and limitations for more robust applications
+**C. Encouraging interdisciplinary collaboration and research:**
+
+1.  **Cross-disciplinary partnerships:** Collaborations between computer
+    scientists, linguists, and domain experts will foster the development
+    of novel techniques and approaches that address the unique challenges
+    of text mining in specific research areas.
+
+2.  **Shared resources and infrastructure:** Establishing shared platforms,
+    datasets, and software tools will encourage researchers from different
+    disciplines to explore text mining applications, promoting innovation
+    and knowledge exchange.
+
+3.  **Training and education:** Providing training and educational
+    opportunities in text mining will help researchers across disciplines
+    develop the skills needed to apply text mining techniques effectively
+    in their research.
+
+## Conclusion and Future Directions
+
+<hr>
+
+<br>
+
+**D. Addressing challenges and limitations for more robust applications:**
+
+1.  **Tackling unstructured and noisy data:** Developing techniques to
+    better handle, clean, and preprocess unstructured and noisy data will
+    improve the accuracy and reliability of text mining applications in
+    academic research.
+
+2.  **Addressing ethical and legal concerns:** Researchers must continue to
+    engage in discussions and develop guidelines to address data privacy,
+    copyright, and intellectual property issues related to text mining.
+
+3.  **Improving scalability and computational efficiency:** As the volume
+    of data continues to grow, researchers need to develop more scalable
+    and computationally efficient text mining techniques to handle
+    large-scale datasets and real-time processing demands.
